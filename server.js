@@ -9,7 +9,7 @@ var config = {
     host: 'db.imad.hasura-app.io',
     port: '5432',
     password:process.env.DB_PASSWORD
-}
+};
 var app = express();
 app.use(morgan('combined'));
 
@@ -82,7 +82,7 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-var pool = new Pool(config)
+var pool = new Pool(config);
 app.get('/test-db',function(req,res){
    //make a select request
    //return a response with results
@@ -93,14 +93,14 @@ app.get('/test-db',function(req,res){
        else{
            res.send(JSON.stringify(result.rows));
        }
-   })
+   });
 });
 
 var counter = 0;
 app.get('/counter',function(req,res){
     counter = counter + 1;
     res.send(counter.toString());
-})
+});
 
 var names = [];
 app.get('/submit-name',function(req,res){// URL : /submit-name?name=xxxxx
@@ -109,7 +109,7 @@ app.get('/submit-name',function(req,res){// URL : /submit-name?name=xxxxx
     names.push(name);
     //JSON: Javascript Object Notation
     res.send(JSON.stringify(names));
-})
+});
 
 app.get('/:articleName', function (req,res) {
     //articleName = article-one
