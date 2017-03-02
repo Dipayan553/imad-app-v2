@@ -13,6 +13,19 @@ var config = {
 var app = express();
 app.use(morgan('combined'));
 
+app.get('/',function(req,res){
+    res.sendFile(path.join(__dirname,'ui','index.html'));
+});
+
+function hash(input){
+    
+}
+app.get('/hash/:input',function(req,res){
+    var hashedString=hash(req.params.input);
+    res.send(hashedString);
+});
+
+
 
 var articles = {
  'article-one' : {
